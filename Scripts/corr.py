@@ -1,34 +1,37 @@
+import mrjob
 from mrjob.job import MRJob
 from mrjob.step import MRStep
 from _bins import agebin,timebin
 
 class MRJobPearsonCorr(MRJob):
     
-    keys = ["n","x","xx","xy","y","yy"]
+    # Remove key from output
+    OUTPUT_PROTOCOL = mrjob.protocol.JSONValueProtocol
     
     # Mapper mapping each partial sum of each sum-variable for each line in file
-    # Map: keyval = ("var_i",var_i_j) - var_i = {"n","x","xx","xy","y","y"}
+    # Map: keyval = ("var_i",var_i_j), var_i = {"n","x","xx","xy","y","y"}
     def mapper(self, _, line):
         answers = line.split(",")
         xi,yi = agebin(answers[0]), timebin(answers[1])
-        yield self.keys[0], 1,
-        yield self.keys[1], xi
-        yield self.keys[2], xi*xi
-        yield self.keys[3], xi*yi
-        yield self.keys[4], yi
-        yield self.keys[5], yi*yi
+        yield "n",  1,
+        yield "x",  xi
+        yield "xx", xi*xi
+        yield "xy", xi*yi
+        yield "y",  yi
+        yield "yy", yi*yi
     
     # Reducer summarising each variable
-    # Map: keyval = ("var_i",sum(var_i_j)) - var_i = {"n","x","xx","xy","y","y"} - j = 0..n-1
+    # Map: keyval = ("var_i",sum(var_i_j)),
+    #               var_i = {"n","x","xx","xy","y","y"}, j = 0..n-1
     def reducer_sum(self, var, values):
         yield None, (var, sum(values))
      
     # Reducer extracting variables and computing PCC
-    # Map: keyval = ("PCC", PCC(n,x,xx,xy,y,yy))
+    # Map: value = PCC(n,x,xx,xy,y,yy)
     def reducer_pearson(self, _, varsumpairs):
-        varsumpairs = dict(varsumpairs)
-        n,x,xx,xy,y,yy = [varsumpairs[k] for k in self.keys]
-        yield "PCC", ( xy-x*y/n ) / ( (xx-(x**2)/n) * (yy-(y**2)/n) )**0.5
+        # Sort by var name and extract into variables (6 vars)
+        n,x,xx,xy,y,yy = (varsum for _,varsum in sorted(varsumpairs))
+        yield None, ( xy-x*y/n ) / ( (xx-(x**2)/n) * (yy-(y**2)/n) )**0.5
     
     # 2 step to calculate PCC for age and time
     def steps(self):
