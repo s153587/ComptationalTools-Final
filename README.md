@@ -13,12 +13,12 @@
 # Instructions:
 ### Required Tools and Packages:
 > Python 3.6
-* pandas
-* numpy
-* mrjob
-* sqlite3
-* textwrap
-* jupyter
+>* pandas
+>* numpy
+>* mrjob
+>* sqlite3
+>* textwrap
+>* jupyter
 
 ### Viewing Results
 > Open "Project.ipynb" using jupyter to see pre-rendered results - can also be viewed from github
@@ -29,4 +29,4 @@
 > Alternatively files found in the "Scripts" folder (exepct _bins.py) can be run with proper inputs - refer to the notebook for expected input.
 
 ### OS Version
-> This has only been tested on windows 10, but should also work on linux
+> This has only been tested on windows 10, but should also work on linux.
