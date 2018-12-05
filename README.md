@@ -24,10 +24,10 @@
 > Open "Project.ipynb" using jupyter to see pre-rendered results - can also be viewed from github
 
 ### Testing Code
-> Open "Project_empty.ipynb" using jupyter and run the entire notebook from top to bottom
+> Open "Project_empty.ipynb" using jupyter and run the entire notebook from top to bottom <br>
 > MAY REQUIRE ADMIN RIGHTS to create scripts and run mr jobs.
 
-> Alternatively files found in the "Scripts" folder (exepct _bins.py) can be run with proper inputs -
+> Alternatively files found in the "Scripts" folder (exepct _bins.py) can be run with proper inputs - <br>
 > refer to the notebook for expected input.
 
 ### OS Version
