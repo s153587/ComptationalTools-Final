@@ -18,6 +18,7 @@
 >* mrjob
 >* sqlite3
 >* textwrap
+>* matplotlib
 >* jupyter
 
 ### Viewing Results
