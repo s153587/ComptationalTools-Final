@@ -2,7 +2,7 @@ from mrjob.job import MRJob
 from mrjob.step import MRStep
 from _bins import agebin,timebin
 
-class MRJobDistinct(MRJob):
+class MRJobFull(MRJob):
     
     # Mapper reading input file into binned (age,time) pairs for counting
     # Map: keyval = ((age,time),1)
@@ -64,4 +64,4 @@ class MRJobDistinct(MRJob):
         ]
     
 if __name__ == '__main__':
-    MRJobDistinct.run()
+    MRJobFull.run()
