@@ -34,4 +34,4 @@
 > refer to the notebook for expected input.
 
 ### OS Version
-> This has only been tested on windows 10, but should also work on linux.
+> This has only been tested on Windows 10, but should also work on Linux.
