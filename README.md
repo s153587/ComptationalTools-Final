@@ -22,12 +22,13 @@
 >* jupyter
 
 ### Viewing Results
-> Open "Project.ipynb" using jupyter to see pre-rendered results - can also be viewed from github
+> Open "Project.ipynb" using jupyter to see pre-rendered results. <br>
+> Can also be viewed from github <br>
 > Optionally uncomment the connection to the sqldatabase forcing reload from file into sql
 
 ### Testing Code
 > Open "Project_empty.ipynb" using jupyter and run the entire notebook from top to bottom <br>
-> MAY REQUIRE ADMIN RIGHTS to create scripts and run mr jobs.
+> MAY REQUIRE ADMIN RIGHTS to create scripts and run mr jobs. <br>
 > Optionally uncomment the connection to the sqldatabase forcing reload from file into sql
 
 > Alternatively files found in the "Scripts" folder (exepct _bins.py) can be run with proper inputs - <br>
